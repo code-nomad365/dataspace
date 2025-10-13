@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>檔案資源中心 | V1.0.3</title>
+    <!-- 引入 Tone.js 用於音效 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <style>
+        /* 響應式配色方案，清晰自然 */
+        :root {
+            --color-1: #264653; /* 深藍綠 (主色調) */
+            --color-2: #2A9D8F; /* 綠松石 (強調色) */
+            --color-3: #E9C46A; /* 芥末黃 */
+            --color-4: #F4A261; /* 珊瑚橘 */
+            --color-5: #E76F51; /* 磚紅色 */
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", sans-serif;
+            /* 版面靠上對齊，整體留白 */
+            background: linear-gradient(135deg, var(--color-1) 0%, var(--color-2) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- 搜尋欄位樣式 START --- */
+        .search-container {
+            margin-bottom: 25px;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: 2px solid white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            outline: none;
+            color: var(--color-1);
+        }
+
+        #searchInput::placeholder {
+            color: #aaa;
+        }
+
+        #searchInput:focus {
+            border-color: var(--color-4);
+            box-shadow: 0 0 0 4px rgba(244, 162, 97, 0.3);
+        }
+        /* --- 搜尋欄位樣式 END --- */
+
+
+        .stats-bar {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-2), var(--color-4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            list-style: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .file-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .file-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 檔案卡片標題顏色輪播 (保留視覺動態感) */
+        .file-card:nth-child(5n+1) .card-header { background: linear-gradient(135deg, var(--color-1), #1a3340); }
+        .file-card:nth-child(5n+2) .card-header { background: linear-gradient(135deg, var(--color-2), #1f7a6f); }
+        .file-card:nth-child(5n+3) .card-header { background: linear-gradient(135deg, var(--color-3), #d4a849); }
+        .file-card:nth-child(5n+4) .card-header { background: linear-gradient(135deg, var(--color-4), #e08645); }
+        .file-card:nth-child(5n+5) .card-header { background: linear-gradient(135deg, var(--color-5), #d5543a); }
+        
+        .card-header {
+            padding: 24px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 15px; /* 增加圖示和檔名間的間距 */
+        }
+        
+        /* 檔案圖示容器，用於控制大小和顏色 */
+        .file-icon {
+            width: 38px; /* 調整圖示大小，使其更精緻 */
+            height: 38px;
+            flex-shrink: 0;
+            color: white; /* 預設顏色，會被 JS 動態覆蓋以顯示檔案類型色 */
+            position: relative;
+            z-index: 1;
+            /* 添加一個淡出的白色圓形背景，讓圖示更突出 */
+            padding: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .file-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor; /* 確保 SVG 使用 file-icon 的 color 屬性 */
+        }
+        
+        .file-name {
+            font-size: 18px;
+            font-weight: 600;
+            word-break: break-word;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+        
+        .loading, .error, .no-results {
+            background: white;
+            border-radius: 16px;
+            padding: 60px 20px;
+            margin: 20px auto;
+            color: #555;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .error {
+            color: var(--color-5);
+        }
+        
+        .no-results {
+            color: var(--color-4);
+            font-weight: 500;
+        }
+
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-2), var(--color-4));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: scale(1.03);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 20px 24px 24px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .version-tag {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 2px 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .file-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 檔案資源中心</h1>
+        <p>自動掃描並展示 Repository 中的所有 HTML 檔案</p>
+    </div>
+    
+    <div class="container">
+        <!-- 載入中/錯誤訊息區塊 -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="font-size: 18px;">正在載入檔案列表...</p>
+        </div>
+        
+        <!-- 搜尋輸入框 (V1.0.3 新增) -->
+        <div class="search-container" id="searchContainer" style="display: none;">
+            <input type="text" id="searchInput" placeholder="🔍 輸入檔名關鍵字進行搜尋..." oninput="handleSearch()">
+        </div>
+
+        <!-- 統計資訊區塊 -->
+        <div class="stats-bar" id="statsBar" style="display: none;">
+            <div class="stat-item">
+                <div class="stat-number" id="fileCount">0</div>
+                <div class="stat-label">檔案總數</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="updateTime">--</div>
+                <div class="stat-label">最後更新</div>
+            </div>
+        </div>
+        
+        <!-- 檔案列表網格 -->
+        <ul class="file-grid" id="fileGrid" style="display: none;">
+            <!-- 檔案卡片會自動生成 -->
+        </ul>
+        
+        <!-- 搜尋結果為空時的提示 (V1.0.3 新增) -->
+        <div class="no-results" id="noResults" style="display: none;">
+            找不到符合條件的檔案，請嘗試其他關鍵字。
+        </div>
+
+        
+        <!-- 底部資訊與版本號 -->
+        <div class="footer">
+            <p>🚀 Hosted on GitHub Pages | ⚡ Powered by GitHub API</p>
+            <p style="margin-top: 8px; font-size: 12px; opacity: 0.7;">
+                © 2025 Auto-generated File Index
+                <span class="version-tag">V1.0.3</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================================
+        // 核心設定 Core Configuration
+        // ==========================================================
+        const CONFIG = {
+            GITHUB_USERNAME: 'code-nomad365',
+            REPO_NAME: 'dataspace',
+            VERSION: 'V1.0.3', // 版本編號已更新
+            // 支援的檔案類型，用於篩選和賦予圖示
+            SUPPORTED_EXTENSIONS: ['.html', '.pdf', '.md', '.js', '.css', '.txt'],
+        };
+        
+        const API_URL = `https://api.github.com/repos/${CONFIG.GITHUB_USERNAME}/${CONFIG.REPO_NAME}/git/trees/main?recursive=1`;
+        const BASE_URL = `https://${CONFIG.GITHUB_USERNAME}.github.io/${CONFIG.REPO_NAME}/`;
+        
+        // 全域變數，用於儲存所有檔案資料 (V1.0.3 新增)
+        let allFiles = [];
+
+        // Tone.js 聲音合成器
+        let synth;
+
+        // ==========================================================
+        // SVG 圖標定義 Icons Definitions
+        // ==========================================================
+
+        const icons = {
+            // 一般檔案 (Default) - 檔案文件圖標
+            file: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>`,
+            
+            // HTML - 標籤文件 (結合標籤和文件框)
+            html: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <path d="M14 2v6h6"></path>
+                <path d="M9 15l-1-1 1-1m6 2l1-1-1-1"/>
+                <path d="M12 16.5v-3"/>
+            </svg>`,
+            
+            // PDF - 鎖定文件圖標
+            pdf: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>`,
+            
+            // JavaScript (JS) - 代碼片段圖標
+            js: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"></path><path d="M8 12h13"></path><path d="M8 18h13"></path><path d="M3 6h.01"></path><path d="M3 12h.01"></path><path d="M3 18h.01"></path></svg>`,
+            
+            // Markdown (MD) - 文件與線條
+            md: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M13 2v7h7"></path><path d="M8 12l2 2 4-4"></path></svg>`,
+            
+            // CSS - 畫筆或樣式圖標
+            css: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M12 18V6"></path><path d="M15 9l-3-3-3 3"></path></svg>`,
+            
+            // 外部連結/複製圖標 (不變)
+            link: `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4.715 6.542L3.343 7.914a3 3 0 104.243 4.243l1.828-1.829A3 3 0 008.586 5.5L8 6.086a1.002 1.002 0 00-.154.199 2 2 0 01.861 3.337L6.88 11.45a2 2 0 11-2.83-2.83l.793-.792a4.018 4.018 0 01-.128-1.287z"/><path d="M6.586 4.672A3 3 0 007.414 9.5l.775-.776a2 2 0 01-.896-3.346L9.12 3.55a2 2 0 112.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 10-4.243-4.243L6.586 4.672z"/></svg>`,
+            copy: `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4 2a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V2z"/><path d="M2 5a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2v-1h-1v1a1 1 0 01-1 1H2a1 1 0 01-1-1V7a1 1 0 011-1h1V5H2z"/></svg>`
+        };
+
+        // 檔案類型與顏色對應
+        const fileColorMap = {
+            'html': '#E34F26', // HTML - 經典橘紅
+            'pdf': '#D90000',  // PDF - 鮮紅
+            'js': '#F7DF1E',   // JavaScript - 亮黃 (作為圖示色時看起來更像 JS)
+            'css': '#1572B6',  // CSS - 藍色
+            'md': '#087EA4',   // Markdown - 藍綠
+            'txt': '#607D8B',  // Text - 灰藍
+            'default': '#ffffff' // 預設使用白色 (與卡片底色呼應)
+        };
+        
+        // ==========================================================
+        // 輔助函式 Helper Functions
+        // ==========================================================
+
+        // 取得檔案對應的圖示和顏色
+        function getFileIcon(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            
+            const svgKey = icons.hasOwnProperty(ext) ? ext : 'file';
+            const accentColor = fileColorMap.hasOwnProperty(ext) ? fileColorMap[ext] : fileColorMap['default'];
+
+            return { svg: icons[svgKey], accentColor: accentColor };
+        }
+
+        // 初始化 Tone.js
+        function initializeAudio() {
+            if (!synth) {
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: 'sine' },
+                    envelope: {
+                        attack: 0.005,
+                        decay: 0.1,
+                        sustain: 0.01,
+                        release: 0.2
+                    }
+                }).toDestination();
+                Tone.start(); 
+            }
+        }
+
+        // 播放成功音效
+        function playSuccessSound() {
+            initializeAudio(); 
+            if (synth) {
+                synth.triggerAttackRelease("G5", "16n"); // 使用更高頻率的 G5 讓聲音更清脆
+            }
+        }
+
+        // ==========================================================
+        // 檔案渲染與搜尋邏輯 File Rendering and Search Logic
+        // ==========================================================
+        
+        const fileGridElement = document.getElementById('fileGrid');
+        const fileCountElement = document.getElementById('fileCount');
+        const noResultsElement = document.getElementById('noResults');
+
+        /**
+         * 渲染檔案卡片到網格中
+         * @param {Array<Object>} filesToRender - 要渲染的檔案陣列
+         */
+        function renderFiles(filesToRender) {
+            fileGridElement.innerHTML = '';
+            
+            if (filesToRender.length === 0) {
+                fileGridElement.style.display = 'none';
+                noResultsElement.style.display = 'block';
+                return;
+            }
+            
+            noResultsElement.style.display = 'none';
+            fileGridElement.style.display = 'grid';
+
+            filesToRender.forEach((file, index) => {
+                const li = document.createElement('li');
+                li.className = 'file-card';
+                li.style.animationDelay = `${index * 0.05}s`;
+                
+                const fullUrl = BASE_URL + file.path;
+                const fileName = file.path.split('/').pop();
+                
+                const { svg, accentColor } = getFileIcon(fileName);
+
+                li.innerHTML = `
+                    <div class="card-header">
+                        <!-- 圖示使用動態顏色 -->
+                        <div class="file-icon" style="color: ${accentColor};">${svg}</div>
+                        <div class="file-name" title="${file.path}">${fileName}</div>
+                    </div>
+                    <div class="button-group">
+                        <a href="${fullUrl}" class="btn btn-primary" target="_blank">
+                            ${icons.link}
+                            開啟檔案
+                        </a>
+                        <button class="btn btn-secondary" onclick="handleCopyClick('${fullUrl}', this)">
+                            ${icons.copy}
+                            複製連結
+                        </button>
+                    </div>
+                `;
+                
+                fileGridElement.appendChild(li);
+            });
+        }
+        
+        /**
+         * 處理即時搜尋輸入
+         */
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const filtered = allFiles.filter(file => {
+                // 比對檔案路徑 (包含目錄) 或最終檔名
+                return file.path.toLowerCase().includes(searchTerm);
+            });
+            
+            // 更新統計數量
+            fileCountElement.textContent = filtered.length;
+            
+            renderFiles(filtered);
+        }
+
+        /**
+         * 載入所有檔案並初始化應用程式
+         */
+        async function loadFiles() {
+            const loadingElement = document.getElementById('loading');
+            const statsBarElement = document.getElementById('statsBar');
+            const searchContainerElement = document.getElementById('searchContainer');
+            const updateTimeElement = document.getElementById('updateTime');
+
+            // 更新版本標籤
+            document.querySelector('.version-tag').textContent = CONFIG.VERSION;
+            
+            try {
+                // 1. 獲取 GitHub 檔案列表
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error('無法獲取檔案列表，請檢查 Repository 名稱和權限。');
+                }
+                
+                const data = await response.json();
+                
+                // 2. 過濾支援的檔案類型 (排除 index.html) 並儲存到全域變數
+                const supportedExtensions = CONFIG.SUPPORTED_EXTENSIONS.map(e => e.toLowerCase());
+
+                allFiles = data.tree
+                    .filter(item => {
+                        if (item.type !== 'blob' || item.path === 'index.html') return false;
+                        const ext = '.' + item.path.split('.').pop().toLowerCase();
+                        return supportedExtensions.includes(ext);
+                    })
+                    .sort((a, b) => a.path.localeCompare(b.path));
+                
+                if (allFiles.length === 0) {
+                    loadingElement.innerHTML = `
+                        <div class="error">
+                            ❌ 未找到任何支援的檔案<br>
+                            <span style="font-size: 14px; color: #666;">（目前支援：${CONFIG.SUPPORTED_EXTENSIONS.join(', ')}，且已排除 index.html）</span>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // 3. 隱藏載入畫面並顯示內容
+                loadingElement.style.display = 'none';
+                statsBarElement.style.display = 'flex';
+                searchContainerElement.style.display = 'block';
+
+                // 4. 更新統計資訊 (顯示全部數量)
+                fileCountElement.textContent = allFiles.length;
+                updateTimeElement.textContent = new Date().toLocaleTimeString('zh-TW', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                // 5. 初始渲染所有檔案
+                renderFiles(allFiles);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                loadingElement.style.display = 'block';
+                loadingElement.innerHTML = `
+                    <p class="error">
+                        ❌ 載入失敗：${error.message}<br><br>
+                        請確認 Repository (<strong>${CONFIG.REPO_NAME}</strong>) 設定正確且為 Public
+                    </p>
+                `;
+                statsBarElement.style.display = 'none';
+                searchContainerElement.style.display = 'none';
+            }
+        }
+
+        // 處理複製點擊事件，包含音效播放
+        function handleCopyClick(text, button) {
+            playSuccessSound();
+
+            // 使用 document.execCommand('copy') 作為 fallback
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(updateButtonStatus).catch(() => fallbackCopy(text, button));
+            } else {
+                fallbackCopy(text, button);
+            }
+
+            function updateButtonStatus() {
+                const originalHTML = button.innerHTML;
+                const originalBackground = button.style.background;
+                const originalColor = button.style.color;
+
+                button.innerHTML = '✓ 已複製';
+                button.style.background = 'linear-gradient(135deg, var(--color-2), var(--color-3))';
+                button.style.color = 'white';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.background = originalBackground;
+                    button.style.color = originalColor;
+                }, 2000);
+            }
+
+            function fallbackCopy(text, button) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed'; 
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    updateButtonStatus();
+                } catch (err) {
+                    console.error('Fallback 複製失敗:', err);
+                    // 這裡使用自定義的訊息框取代 alert()
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error';
+                    errorMessage.textContent = '複製失敗，請手動複製連結。';
+                    document.querySelector('.container').appendChild(errorMessage);
+
+                    setTimeout(() => {
+                        errorMessage.remove();
+                    }, 3000);
+                }
+                document.body.removeChild(textarea);
+            }
+        }
+        
+        // 頁面載入後執行
+        window.onload = loadFiles;
+    </script>
+</body>
+</html>
