@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公文擬辦參考小幫手</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 使用 Tailwind 預設的 Inter 字體 */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        /* 保持 <pre> 標籤的換行和空格 */
+        .option-text {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95rem; /* 稍微調整字體大小 */
+            line-height: 1.7;   /* 增加行高 */
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mt-2{margin-top:0.5rem}.mb-4{margin-bottom:1rem}.flex{display:flex}.hidden{display:none}.h-5{height:1.25rem}.min-h-screen{min-height:100vh}.w-5{width:1.25rem}.w-full{width:100%}.max-w-4xl{max-width:56rem}.items-center{align-items:center}.justify-between{justify-content:space-between}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-xl{border-radius:0.75rem}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-4{padding-left:1rem;padding-right:1rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246 / var(--tw-ring-opacity, 1))}.focus\:ring-opacity-50:focus{--tw-ring-opacity:0.5}@media (min-width: 768px){.md\:p-6{padding:1.5rem}.md\:p-8{padding:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}}</style><style id="tag-inspector-styles">
+                    .inspector-hover-outline { outline: 1px dotted #dc3545 !important; box-shadow: inset 0 0 0 1px #dc3545; }
+                    #tag-inspector-tooltip { position: fixed; display: none; background-color: #dc3545; color: white; padding: 2px 6px; font-size: 12px; border-radius: 4px; pointer-events: none; z-index: 9999; font-family: monospace; }
+                </style></head>
+<body class="bg-slate-100 min-h-screen p-4 md:p-8" contenteditable="true">
+
+    <main class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+        <header class="bg-slate-800 p-6">
+            <h1 class="text-2xl md:text-3xl font-bold text-white text-center">公文擬辦參考小幫手</h1>
+            <p class="text-center text-slate-300 mt-2">點擊類別展開選項，並可一鍵複製擬辦內容。</p>
+        </header>
+
+        <!-- 擬辦選項容器 -->
+        <div id="accordion-container" class="p-4 md:p-6 space-y-4">
+            <!-- 內容將由 JavaScript 動態生成 -->
+        <div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-0">
+                    <span class="text-lg font-semibold text-slate-700">研習活動</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-0" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭研習課程業經徵詢相關(領域)老師,均因公忙不克參加,無須辦理。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭研習課程業經徵詢相關(領域)老師,均因公忙不克參加,無須辦理。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭研習課程業經徵詢相關(領域)老師,擬請 ○○○ 師參加。
+二、擬請教務處、人事室,協助辦理薦派、課務派代及公假事宜。
+三、奉核後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭研習課程業經徵詢相關(領域)老師,擬請 ○○○ 師參加。
+二、擬請教務處、人事室,協助辦理薦派、課務派代及公假事宜。
+三、奉核後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭研習,業於本校網頁公布周知(如附件),並無人員報名,故無須辦理。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭研習,業於本校網頁公布周知(如附件),並無人員報名,故無須辦理。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭研習擬不派員參加。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭研習擬不派員參加。
+二、陳閱後文存。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-1">
+                    <span class="text-lg font-semibold text-slate-700">各項敘獎</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-1" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭(競賽)活動,業已辦理完畢,建議敘獎名額如下：總務主任 ○○ 嘉獎 ○ 次,承辦人 ○○ 嘉獎 ○ 次。
+二、案奉核後,擬請人事室辦理後續敘獎事宜。
+三、文陳閱後存查。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭(競賽)活動,業已辦理完畢,建議敘獎名額如下：總務主任 ○○ 嘉獎 ○ 次,承辦人 ○○ 嘉獎 ○ 次。
+二、案奉核後,擬請人事室辦理後續敘獎事宜。
+三、文陳閱後存查。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-2">
+                    <span class="text-lg font-semibold text-slate-700">轉知比賽或活動訊息</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-2" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【需函報或免備文逕送參賽者資料時】
+一、旨揭(競賽)活動訊息,業於本校網頁公布周知,截至今日無人報名。
+二、文擬陳閱後存查。
+(有參賽者,請參考免備文逕送案件。)</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【需函報或免備文逕送參賽者資料時】
+一、旨揭(競賽)活動訊息,業於本校網頁公布周知,截至今日無人報名。
+二、文擬陳閱後存查。
+(有參賽者,請參考免備文逕送案件。)">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【無需函報或免備文逕送參賽者資料時】
+一、旨揭(競賽)活動訊息,擬鼓勵學生(同仁)參加,並於本校網頁公布周知,若有人員報名,則另案辦理後續參(賽)加事宜。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【無需函報或免備文逕送參賽者資料時】
+一、旨揭(競賽)活動訊息,擬鼓勵學生(同仁)參加,並於本校網頁公布周知,若有人員報名,則另案辦理後續參(賽)加事宜。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭(○○競賽)活動,業經徵詢專任老師,表示無該項專長學生,故不派員參加。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭(○○競賽)活動,業經徵詢專任老師,表示無該項專長學生,故不派員參加。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭(○○○競賽)活動,擬不派員參加。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭(○○○競賽)活動,擬不派員參加。
+二、陳閱後文存。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-3">
+                    <span class="text-lg font-semibold text-slate-700">轉知法令</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-3" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【案一】
+一、旨揭法令規定,經查現無應辦事項,擬錄案存參利用。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【案一】
+一、旨揭法令規定,經查現無應辦事項,擬錄案存參利用。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【案二】
+一、旨揭法令規定係屬轉知性質,經查本校無應辦事項。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【案二】
+一、旨揭法令規定係屬轉知性質,經查本校無應辦事項。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【需會知其他處室】
+一、旨揭「○○」規定,擬陳核閱後,轉知各處室,爾後辦理○○相關業務時,應依該規定配合辦理。
+二、文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【需會知其他處室】
+一、旨揭「○○」規定,擬陳核閱後,轉知各處室,爾後辦理○○相關業務時,應依該規定配合辦理。
+二、文存。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-4">
+                    <span class="text-lg font-semibold text-slate-700">限期案件 / 免備文逕送案件</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-4" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案業依函示規定辦理如後附件,擬奉核後,免備文逕送 ○○○。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案業依函示規定辦理如後附件,擬奉核後,免備文逕送 ○○○。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案業依函示規定辦理如後附件,擬奉核後,附件原本擬免備文逕送教育局,電子檔存卷歸檔。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案業依函示規定辦理如後附件,擬奉核後,附件原本擬免備文逕送教育局,電子檔存卷歸檔。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案擬填報資料如後附件,擬奉核後,依函示規定上網填報。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案擬填報資料如後附件,擬奉核後,依函示規定上網填報。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案擬不提出申請(無須辦理),依說明二規定,無須回復。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案擬不提出申請(無須辦理),依說明二規定,無須回復。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本校查無旨揭情形,依說明二規定,無須回復。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本校查無旨揭情形,依說明二規定,無須回復。
+二、陳閱後文存。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-5">
+                    <span class="text-lg font-semibold text-slate-700">書面資料僅 1 份原本時</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-5" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【紙本簽核時】
+請於抄本或影印本上加註：「原本隨文發出(或原本逕送○○○),抄本(或影印本)存卷歸檔」,並加蓋職章。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【紙本簽核時】
+請於抄本或影印本上加註：「原本隨文發出(或原本逕送○○○),抄本(或影印本)存卷歸檔」,並加蓋職章。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【線上簽核時】
+請於簽陳時,即要於簽文中敘明「奉核後,附件原本擬免備文逕送○○○,電子檔存卷歸檔」。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【線上簽核時】
+請於簽陳時,即要於簽文中敘明「奉核後,附件原本擬免備文逕送○○○,電子檔存卷歸檔」。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">【附件不隨文歸檔】
+本案因附件數量龐大,且承辦相關業務須隨時參考,為環保節省紙張,擬由承辦人員抽存參辦,不隨文歸檔。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="【附件不隨文歸檔】
+本案因附件數量龐大,且承辦相關業務須隨時參考,為環保節省紙張,擬由承辦人員抽存參辦,不隨文歸檔。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-6">
+                    <span class="text-lg font-semibold text-slate-700">副本 (無應辦事項)</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-6" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案係屬副知性質,查無應辦事項。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案係屬副知性質,查無應辦事項。
+二、陳閱後文存。">複製內容</button></div></div></div><div class="border border-slate-200 rounded-lg overflow-hidden"><button class="accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200" aria-expanded="false" aria-controls="panel-7">
+                    <span class="text-lg font-semibold text-slate-700">函報 (擬不辦理)</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                    </svg>
+                </button><div id="panel-7" class="accordion-panel hidden p-4 space-y-3"><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、查本校無旨揭 ○○ 事項,依說明規定免回復。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、查本校無旨揭 ○○ 事項,依說明規定免回復。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、旨揭 ○○,本校擬不申請。
+二、陳閱後文存。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、旨揭 ○○,本校擬不申請。
+二、陳閱後文存。">複製內容</button></div><div class="option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm"><pre class="option-text text-slate-800 mb-4">一、本案業於本校網頁(教師晨會)公布周知,截至今日無人提出申請,故擬不辦理 ○○。
+二、文擬陳閱後存查。</pre><button class="copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" data-copy="一、本案業於本校網頁(教師晨會)公布周知,截至今日無人提出申請,故擬不辦理 ○○。
+二、文擬陳閱後存查。">複製內容</button></div></div></div></div>
+    </main>
+
+    <script>
+        // 1. 從 PDF 提取並結構化的資料
+        const draftData = [
+            {
+                category: "研習活動",
+                options: [
+                    "一、旨揭研習課程業經徵詢相關(領域)老師,均因公忙不克參加,無須辦理。\n二、陳閱後文存。",
+                    "一、旨揭研習課程業經徵詢相關(領域)老師,擬請 ○○○ 師參加。\n二、擬請教務處、人事室,協助辦理薦派、課務派代及公假事宜。\n三、奉核後文存。",
+                    "一、旨揭研習,業於本校網頁公布周知(如附件),並無人員報名,故無須辦理。\n二、陳閱後文存。",
+                    "一、旨揭研習擬不派員參加。\n二、陳閱後文存。"
+                ]
+            },
+            {
+                category: "各項敘獎",
+                options: [
+                    "一、旨揭(競賽)活動,業已辦理完畢,建議敘獎名額如下：總務主任 ○○ 嘉獎 ○ 次,承辦人 ○○ 嘉獎 ○ 次。\n二、案奉核後,擬請人事室辦理後續敘獎事宜。\n三、文陳閱後存查。"
+                ]
+            },
+            {
+                category: "轉知比賽或活動訊息",
+                options: [
+                    "【需函報或免備文逕送參賽者資料時】\n一、旨揭(競賽)活動訊息,業於本校網頁公布周知,截至今日無人報名。\n二、文擬陳閱後存查。\n(有參賽者,請參考免備文逕送案件。)",
+                    "【無需函報或免備文逕送參賽者資料時】\n一、旨揭(競賽)活動訊息,擬鼓勵學生(同仁)參加,並於本校網頁公布周知,若有人員報名,則另案辦理後續參(賽)加事宜。\n二、陳閱後文存。",
+                    "一、旨揭(○○競賽)活動,業經徵詢專任老師,表示無該項專長學生,故不派員參加。\n二、陳閱後文存。",
+                    "一、旨揭(○○○競賽)活動,擬不派員參加。\n二、陳閱後文存。"
+                ]
+            },
+            {
+                category: "轉知法令",
+                options: [
+                    "【案一】\n一、旨揭法令規定,經查現無應辦事項,擬錄案存參利用。\n二、陳閱後文存。",
+                    "【案二】\n一、旨揭法令規定係屬轉知性質,經查本校無應辦事項。\n二、陳閱後文存。",
+                    "【需會知其他處室】\n一、旨揭「○○」規定,擬陳核閱後,轉知各處室,爾後辦理○○相關業務時,應依該規定配合辦理。\n二、文存。"
+                ]
+            },
+            {
+                category: "限期案件 / 免備文逕送案件",
+                options: [
+                    "一、本案業依函示規定辦理如後附件,擬奉核後,免備文逕送 ○○○。\n二、陳閱後文存。",
+                    "一、本案業依函示規定辦理如後附件,擬奉核後,附件原本擬免備文逕送教育局,電子檔存卷歸檔。\n二、陳閱後文存。",
+                    "一、本案擬填報資料如後附件,擬奉核後,依函示規定上網填報。\n二、陳閱後文存。",
+                    "一、本案擬不提出申請(無須辦理),依說明二規定,無須回復。\n二、陳閱後文存。",
+                    "一、本校查無旨揭情形,依說明二規定,無須回復。\n二、陳閱後文存。"
+                ]
+            },
+            {
+                category: "書面資料僅 1 份原本時",
+                options: [
+                    "【紙本簽核時】\n請於抄本或影印本上加註：「原本隨文發出(或原本逕送○○○),抄本(或影印本)存卷歸檔」,並加蓋職章。",
+                    "【線上簽核時】\n請於簽陳時,即要於簽文中敘明「奉核後,附件原本擬免備文逕送○○○,電子檔存卷歸檔」。",
+                    "【附件不隨文歸檔】\n本案因附件數量龐大,且承辦相關業務須隨時參考,為環保節省紙張,擬由承辦人員抽存參辦,不隨文歸檔。"
+                ]
+            },
+            {
+                category: "副本 (無應辦事項)",
+                options: [
+                    "一、本案係屬副知性質,查無應辦事項。\n二、陳閱後文存。"
+                ]
+            },
+            {
+                category: "函報 (擬不辦理)",
+                options: [
+                    "一、查本校無旨揭 ○○ 事項,依說明規定免回復。\n二、陳閱後文存。",
+                    "一、旨揭 ○○,本校擬不申請。\n二、陳閱後文存。",
+                    "一、本案業於本校網頁(教師晨會)公布周知,截至今日無人提出申請,故擬不辦理 ○○。\n二、文擬陳閱後存查。"
+                ]
+            }
+        ];
+
+        // 2. 頁面載入後執行
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('accordion-container');
+            if (!container) return;
+
+            // 3. 根據資料動態生成 HTML
+            draftData.forEach((item, index) => {
+                // 創建手風琴項目
+                const itemEl = document.createElement('div');
+                itemEl.className = 'border border-slate-200 rounded-lg overflow-hidden';
+
+                // 創建標題按鈕
+                const headerEl = document.createElement('button');
+                headerEl.className = 'accordion-header w-full flex justify-between items-center p-4 bg-slate-50 hover:bg-slate-200 transition-colors duration-200';
+                headerEl.setAttribute('aria-expanded', 'false');
+                headerEl.setAttribute('aria-controls', `panel-${index}`);
+                
+                headerEl.innerHTML = `
+                    <span class="text-lg font-semibold text-slate-700">${item.category}</span>
+                    <!-- SVG 箭頭圖標 -->
+                    <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                `;
+
+                // 創建內容面板
+                const panelEl = document.createElement('div');
+                panelEl.id = `panel-${index}`;
+                panelEl.className = 'accordion-panel hidden p-4 space-y-3';
+                
+                // 創建每個選項卡
+                item.options.forEach(optionText => {
+                    const cardEl = document.createElement('div');
+                    cardEl.className = 'option-card bg-slate-50 border border-slate-200 rounded-lg p-4 shadow-sm';
+                    
+                    // 顯示擬辦文字 (使用 <pre> 保持格式)
+                    const textEl = document.createElement('pre');
+                    textEl.className = 'option-text text-slate-800 mb-4';
+                    textEl.textContent = optionText;
+
+                    // 複製按鈕
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'copy-btn bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50';
+                    copyBtn.textContent = '複製內容';
+                    // 將要複製的文字存在 data-copy 屬性中
+                    copyBtn.dataset.copy = optionText;
+
+                    cardEl.appendChild(textEl);
+                    cardEl.appendChild(copyBtn);
+                    panelEl.appendChild(cardEl);
+                });
+
+                itemEl.appendChild(headerEl);
+                itemEl.appendChild(panelEl);
+                container.appendChild(itemEl);
+            });
+
+            // 4. 設定事件監聽 (使用事件委派)
+            container.addEventListener('click', (e) => {
+                // 點擊手風琴標題
+                const header = e.target.closest('.accordion-header');
+                if (header) {
+                    const panel = header.nextElementSibling;
+                    const arrow = header.querySelector('.arrow-icon');
+                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+                    if (isExpanded) {
+                        panel.classList.add('hidden');
+                        header.setAttribute('aria-expanded', 'false');
+                        arrow.classList.remove('rotate-180');
+                    } else {
+                        panel.classList.remove('hidden');
+                        header.setAttribute('aria-expanded', 'true');
+                        arrow.classList.add('rotate-180');
+                    }
+                }
+
+                // 點擊複製按鈕
+                const copyButton = e.target.closest('.copy-btn');
+                if (copyButton) {
+                    const textToCopy = copyButton.dataset.copy;
+                    copyToClipboard(textToCopy, copyButton);
+                }
+            });
+        });
+
+        // 5. 複製到剪貼簿的功能
+        function copyToClipboard(text, buttonEl) {
+            // 使用 document.execCommand 作為備用方案，因 navigator.clipboard 在某些環境 (如 iframe) 可能受限
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed'; // 移出畫面
+            textarea.style.opacity = 0;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                // 提供視覺反饋
+                buttonEl.textContent = '已複製！';
+                buttonEl.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                buttonEl.classList.add('bg-green-600');
+
+                // 2 秒後恢復原狀
+                setTimeout(() => {
+                    buttonEl.textContent = '複製內容';
+                    buttonEl.classList.remove('bg-green-600');
+                    buttonEl.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                }, 2000);
+
+            } catch (err) {
+                console.error('複製失敗:', err);
+                buttonEl.textContent = '複製失敗';
+                buttonEl.classList.add('bg-red-600');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+    </script>
+
+
+<div id="tag-inspector-tooltip" style="display: none; left: 1192px; top: 357px;">div</div></body>
+</html>
