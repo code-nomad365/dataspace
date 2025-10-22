@@ -121,7 +121,7 @@
                 headerEl.setAttribute('aria-controls', `panel-${index}`);
                 
                 headerEl.innerHTML = `
-                    <span class="text-lg font-semibold text-slate-700">${item.category}</span>
+                    <span class="text-lg font-semibold text-slate-700">${index + 1}、${item.category}</span>
                     <!-- SVG 箭頭圖標 -->
                     <svg class="arrow-icon w-5 h-5 text-slate-500 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -225,4 +225,5 @@
     </script>
 </body>
 </html>
+
 
